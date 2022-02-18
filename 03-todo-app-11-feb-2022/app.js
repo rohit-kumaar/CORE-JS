@@ -1,76 +1,58 @@
-// GRAB ADD BUTTON
-let add = document.getElementById("add");
-add.addEventListener("click", () => {
-  let textArea = document.getElementById("textArea");
-  let textAreaValue = textArea.value.trim();
-  let getData = localStorage.getItem("data")
-    ? JSON.parse(localStorage.getItem("data"))
-    : [];
+const form = document.querySelector("form");
+const inputText = document.querySelector("input[type=text]");
+let ul = document.querySelector("ul");
 
-  console.log(localStorage.getItem("data"));
+function createLi() {
+  const li = document.createElement("li");
+  const span = document.createElement("span");
+  span.innerText = inputText.value;
+  const div = document.createElement("div");
+  const editBtn = document.createElement("button");
+  editBtn.innerText = "Edit";
+  const deleteBtn = document.createElement("button");
+  deleteBtn.innerText = "Delete";
 
-  if (textAreaValue.length > 0) {
-    getData.push(textAreaValue);
+  li.appendChild(span);
+  li.appendChild(div);
+  div.appendChild(editBtn);
+  div.appendChild(deleteBtn);
+  return li;
+}
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  let li = createLi();
+
+  if (inputText.value === "") {
+    alert("Please enter a text");
+  } else {
+    ul.appendChild(li);
   }
-
-  localStorage.setItem("data", JSON.stringify(getData));
-  textArea.value = "";
-  displayInDom();
 });
 
-// DISPLAY IN DOM
-let displayInDom = () => {
-  let getData = localStorage.getItem("data")
-    ? JSON.parse(localStorage.getItem("data"))
-    : [];
+ul.addEventListener("click", (event) => {
+  let button = event.target;
+  let div = button.parentNode;
+  let li = div.parentNode;
+  let ul = li.parentNode;
 
-  let html = "";
-  getData.forEach((element, index) => {
-    html += `<div class="cardBody col-md-3 my-2">
-                <div class="card">
-                    <div class="card-header bg-dark text-white">
-                        <h5 class="card-title h3">Task ${index + 1}</h5>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">${element}</p>
-                    </div>
-                    <div class="card-footer">
-                        <button id="${index}" onclick="deteteTask(this.id)" type="button" class="btn btn-dark">Delete</button>
-
-                    </div>
-                </div>
-            </div>`;
-  });
-  document.getElementById("notes").innerHTML = html;
-};
-
-// DELETE TASK IN DOM
-let deteteTask = (index) => {
-  let getData = localStorage.getItem("data")
-    ? JSON.parse(localStorage.getItem("data"))
-    : [];
-
-  getData.splice(index, 1);
-  localStorage.setItem("data", JSON.stringify(getData));
-  displayInDom();
-};
-
-// SEARCH BOX WORK
-let search = document.getElementById("search");
-search.addEventListener("input", () => {
-  let searchValue = search.value.toLowerCase();
-
-  let cardBody = document.getElementsByClassName("cardBody");
-  Array.from(cardBody).forEach((element) => {
-    let pTag = element.getElementsByTagName("p")[0].innerText;
-    if (pTag.includes(searchValue)) {
-      element.style.display = "block";
-    } else {
-      element.style.display = "none";
-    }
-  });
+  if (button.innerText === "Delete") {
+    ul.removeChild(li);
+  } else if (button.innerText === "Edit") {
+    const span = li.firstElementChild;
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = span.innerText;
+    li.insertBefore(input, span);
+    li.removeChild(span);
+    button.innerText = "save";
+  } else if (button.textContent === "save") {
+    const input = li.firstElementChild;
+    const span = document.createElement("span");
+    span.innerText = input.value;
+    li.insertBefore(span, input);
+    li.removeChild(input);
+    button.innerText = "edit";
+  }
 });
-
-// INVALIDTASK
-// let invalidTask = document.getElementById("invalidTask");
-// invalidTask.reset();
