@@ -20,13 +20,13 @@
       <!-- SEARCH BOX -->
       <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search" />
 
-      <label for="textArea" class="form-label h1 my-3">Add Your Tasks</label>
+      <label for="textArea" class="form-label h2 my-3">Add Your Tasks</label>
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" id="form">
         <!-- INPUT BOX -->
         <input type="text" id="task" class="form-control form-control-dark" placeholder="Enter Your Task Here..." />
         <!-- HIDDEN INPUT BOX -->
         <input type="hidden" class="form-control form-control-dark" placeholder="Enter Your Task Here..." />
-        <div id="invalidTask" class="form-text mb-3"  style="opacity: 0;">
+        <div id="invalidTask" class="form-text mb-3" style="opacity: 0">
           <b class="text-danger"> Please fill the task area.</b>
         </div>
 
@@ -42,41 +42,7 @@
     <hr />
 
     <!-- NOTES  -->
-    <div class="row">
-      <div class="cardBody col-md-3 my-2">
-        <div class="card">
-          <div class="card-header bg-dark text-white">
-            <h5 class="card-title h3">Task 1</h5>
-          </div>
-          <div class="card-body">
-            <p class="card-text">Your task</p>
-          </div>
-          <div class="card-footer">
-            <button type="button" class="btn btn-dark" style="width: 71.63px">
-              Edit
-            </button>
-            <button type="button" class="btn btn-dark mx-1">Delete</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="cardBody col-md-3 my-2">
-        <div class="card">
-          <div class="card-header bg-dark text-white">
-            <h5 class="card-title h3">Task 1</h5>
-          </div>
-          <div class="card-body">
-            <p class="card-text">Your task</p>
-          </div>
-          <div class="card-footer">
-            <button type="button" class="btn btn-dark" style="width: 71.63px">
-              Edit
-            </button>
-            <button type="button" class="btn btn-dark mx-1">Delete</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="row" id="tasks"></div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
