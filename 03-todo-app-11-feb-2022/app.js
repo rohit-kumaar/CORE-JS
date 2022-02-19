@@ -24,6 +24,7 @@ ADD_BTN.addEventListener("click", function () {
 function invalidTask() {
   const INVALID_TASK = document.getElementById("invalidTask");
   INVALID_TASK.style.opacity = "1";
+  INVALID_TASK.style.transition = "2s ease"
 
   setTimeout(() => {
     INVALID_TASK.style.opacity = "0";
