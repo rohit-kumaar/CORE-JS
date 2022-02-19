@@ -2,6 +2,8 @@ const form = document.querySelector("form");
 const inputText = document.querySelector("input[type=text]");
 let ul = document.querySelector("ul");
 
+console.log(ul);
+
 function createLi() {
   const li = document.createElement("li");
   const span = document.createElement("span");
@@ -53,6 +55,6 @@ ul.addEventListener("click", (event) => {
     span.innerText = input.value;
     li.insertBefore(span, input);
     li.removeChild(input);
-    button.innerText = "edit";
+    button.innerText = "Edit";
   }
 });
