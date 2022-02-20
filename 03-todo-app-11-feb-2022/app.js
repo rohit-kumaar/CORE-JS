@@ -2,6 +2,7 @@ taskList();
 
 const FORM = document.getElementById("form");
 const ADD_BTN = document.getElementById("addBtn");
+const UPDATE_BTN = document.getElementById("updateBtn");
 
 FORM.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -53,7 +54,7 @@ function taskList() {
                     <p class="card-text">${element}</p>
                   </div>
                   <div class="card-footer">
-                    <button type="button" class="btn btn-dark" style="width: 71.63px">
+                    <button type="button" class="btn btn-dark" style="width: 71.63px" onClick="editTask(${index})">
                       Edit
                     </button>
                     <button type="button" class="btn btn-dark mx-1">Delete</button>
@@ -64,3 +65,34 @@ function taskList() {
 
   TASKS.innerHTML = tasks;
 }
+
+//  Edit task
+function editTask(index) {
+  const UPDATE_TASK = document.getElementById("updateTask");
+  let storageTaskValue = localStorage.getItem("data")
+    ? JSON.parse(localStorage.getItem("data"))
+    : [];
+
+  const TASK = document.getElementById("task");
+  TASK.value = storageTaskValue[index];
+  ADD_BTN.style.display = "none";
+  UPDATE_BTN.style.display = "inline-block";
+  UPDATE_TASK.value = index;
+}
+
+// Update Task
+UPDATE_BTN.addEventListener("click", function () {
+  const UPDATE_TASK = document.getElementById("updateTask").value;
+  const TASK = document.getElementById("task");
+  let taskValue = TASK.value.trim();
+  let storageTaskValue = localStorage.getItem("data")
+    ? JSON.parse(localStorage.getItem("data"))
+    : [];
+  storageTaskValue[UPDATE_TASK] = taskValue;
+  localStorage.setItem("data", JSON.stringify(storageTaskValue));
+  ADD_BTN.style.display = "inline-block";
+  UPDATE_BTN.style.display = "none";
+  // location.reload();
+  taskList();
+  console.log(taskValue);
+});
