@@ -3,6 +3,7 @@ taskList();
 const FORM = document.getElementById("form");
 const ADD_BTN = document.getElementById("addBtn");
 const UPDATE_BTN = document.getElementById("updateBtn");
+const DELETE_ALL_BTN = document.getElementById("deleteAllBtn");
 
 FORM.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -107,3 +108,13 @@ function deteteTask(index) {
   localStorage.setItem("data", JSON.stringify(storageTaskValue));
   taskList();
 }
+
+// delete all tasks
+DELETE_ALL_BTN.addEventListener("click", function () {
+  let storageTaskValue = localStorage.getItem("data")
+    ? []
+    : alert("You don't have any added tasks");
+
+  localStorage.setItem("data", JSON.stringify(storageTaskValue));
+  taskList();
+});
