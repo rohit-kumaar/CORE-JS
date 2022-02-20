@@ -57,7 +57,7 @@ function taskList() {
                     <button type="button" class="btn btn-dark" style="width: 71.63px" onClick="editTask(${index})">
                       Edit
                     </button>
-                    <button type="button" class="btn btn-dark mx-1">Delete</button>
+                    <button type="button" class="btn btn-dark mx-1" onClick="deteteTask(${index})">Delete</button>
                   </div>
                 </div>
                 </div>`;
@@ -92,7 +92,18 @@ UPDATE_BTN.addEventListener("click", function () {
   localStorage.setItem("data", JSON.stringify(storageTaskValue));
   ADD_BTN.style.display = "inline-block";
   UPDATE_BTN.style.display = "none";
+  TASK.value = "";
   // location.reload();
   taskList();
-  console.log(taskValue);
 });
+
+// deteteTask
+function deteteTask(index) {
+  let storageTaskValue = localStorage.getItem("data")
+    ? JSON.parse(localStorage.getItem("data"))
+    : [];
+
+  storageTaskValue.splice(index, 1);
+  localStorage.setItem("data", JSON.stringify(storageTaskValue));
+  taskList();
+}
