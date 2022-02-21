@@ -46,11 +46,7 @@ function submitForm(error) {
     success.classList.add("show");
     console.log("valid");
   } else {
-    console.log("Invalid");
-    success.classList.add("d-none");
-    inCompleteForm.classList.remove("d-none");
-    inCompleteForm.classList.add("d-block");
-    inCompleteForm.classList.add("show");
+    alert("Please Login In");
   }
   setTimeout(() => {
     success.classList.remove("show");
