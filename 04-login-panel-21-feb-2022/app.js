@@ -43,8 +43,7 @@ function submitForm(error) {
     emailId == employees.emp_name &&
     passwordValue == employees.emp_password
   ) {
-    success.classList.add("show");
-    console.log("valid");
+    window.location.href = "login.html";
   } else {
     alert("Please Enter Email And Password");
   }
