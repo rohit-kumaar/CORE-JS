@@ -46,7 +46,7 @@ function submitForm(error) {
     success.classList.add("show");
     console.log("valid");
   } else {
-    alert("Please Login In");
+    alert("Please Enter Email And Password");
   }
   setTimeout(() => {
     success.classList.remove("show");
