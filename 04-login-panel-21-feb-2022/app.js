@@ -45,9 +45,9 @@ function submitForm(error) {
   ) {
     window.location.href = "login.html";
   } else {
-    alert("Please Enter Email And Password");
+    inCompleteForm.classList.add("show");
   }
   setTimeout(() => {
-    success.classList.remove("show");
+    inCompleteForm.classList.remove("show");
   }, 5000);
 }
