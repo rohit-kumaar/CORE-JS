@@ -1,16 +1,19 @@
+let employees = {
+  emp_name: "rohit@gmail.com",
+  emp_password: "qwerty",
+};
+
 const email = document.getElementById("email");
-const phone = document.getElementById("phone");
+const password = document.getElementById("password");
 const submit = document.getElementById("submit");
 
 email.addEventListener("blur", enterEmail);
-phone.addEventListener("blur", enterPhoneNumber);
+password.addEventListener("blur", enterPassword);
 submit.addEventListener("click", submitForm);
 
 function enterEmail() {
-  const reg = /^([0-9a-zA-Z]+)\@([0-9a-zA-Z]+)\.([a-zA-Z]){2,3}$/;
-  let emailStr = email.value;
-  console.log(emailStr);
-  if (reg.test(emailStr)) {
+  let emailId = email.value;
+  if (emailId == employees.emp_name) {
     email.classList.add("is-valid");
     email.classList.remove("is-invalid");
   } else {
@@ -19,25 +22,35 @@ function enterEmail() {
   }
 }
 
-function enterPhoneNumber() {
-  const reg = /^([0-9]){10}$/;
-  let number = phone.value;
-  console.log(number);
-  if (reg.test(number)) {
-    phone.classList.add("is-valid");
-    phone.classList.remove("is-invalid");
+function enterPassword() {
+  let passwordValue = password.value;
+  if (passwordValue == employees.emp_password) {
+    password.classList.add("is-valid");
+    password.classList.remove("is-invalid");
   } else {
-    phone.classList.add("is-invalid");
-    phone.classList.remove("is-valid");
+    password.classList.add("is-invalid");
+    password.classList.remove("is-valid");
   }
 }
 
 function submitForm(error) {
   error.preventDefault();
   let success = document.getElementById("success");
-  let emailStr = email.value;
-  if (emailStr.length > 0) {
+  let inCompleteForm = document.getElementById("inCompleteForm");
+  let emailId = email.value;
+  let passwordValue = password.value;
+  if (
+    emailId == employees.emp_name &&
+    passwordValue == employees.emp_password
+  ) {
     success.classList.add("show");
+    console.log("valid");
+  } else {
+    console.log("Invalid");
+    success.classList.add("d-none");
+    inCompleteForm.classList.remove("d-none");
+    inCompleteForm.classList.add("d-block");
+    inCompleteForm.classList.add("show");
   }
   setTimeout(() => {
     success.classList.remove("show");
