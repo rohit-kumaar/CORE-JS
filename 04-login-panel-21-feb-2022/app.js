@@ -12,7 +12,7 @@ password.addEventListener("blur", enterPassword);
 submit.addEventListener("click", submitForm);
 
 function enterEmail() {
-  let emailId = email.value;
+  let emailId = email.value.toLowerCase();
   if (emailId == employees.emp_name) {
     email.classList.add("is-valid");
     email.classList.remove("is-invalid");
