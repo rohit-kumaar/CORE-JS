@@ -1,23 +1,9 @@
 taskList();
 
-<<<<<<< HEAD
-console.log(ul);
-
-function createLi() {
-  const li = document.createElement("li");
-  const span = document.createElement("span");
-  span.innerText = inputText.value;
-  const div = document.createElement("div");
-  const editBtn = document.createElement("button");
-  editBtn.innerText = "Edit";
-  const deleteBtn = document.createElement("button");
-  deleteBtn.innerText = "Delete";
-=======
 const FORM = document.getElementById("form");
 const ADD_BTN = document.getElementById("addBtn");
 const UPDATE_BTN = document.getElementById("updateBtn");
 const DELETE_ALL_TASKS = document.getElementById("deleteAllBtn");
->>>>>>> todo-2.0
 
 FORM.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -118,26 +104,6 @@ function deteteTask(index) {
     ? JSON.parse(localStorage.getItem("data"))
     : [];
 
-<<<<<<< HEAD
-  if (button.innerText === "Delete") {
-    ul.removeChild(li);
-  } else if (button.innerText === "Edit") {
-    const span = li.firstElementChild;
-    const input = document.createElement("input");
-    input.type = "text";
-    input.value = span.innerText;
-    li.insertBefore(input, span);
-    li.removeChild(span);
-    button.innerText = "save";
-  } else if (button.textContent === "save") {
-    const input = li.firstElementChild;
-    const span = document.createElement("span");
-    span.innerText = input.value;
-    li.insertBefore(span, input);
-    li.removeChild(input);
-    button.innerText = "Edit";
-  }
-=======
   storageTaskValue.splice(index, 1);
   localStorage.setItem("data", JSON.stringify(storageTaskValue));
   taskList();
@@ -151,5 +117,4 @@ DELETE_ALL_TASKS.addEventListener("click", function () {
 
   localStorage.setItem("data", JSON.stringify(storageTaskValue));
   taskList();
->>>>>>> todo-2.0
 });
